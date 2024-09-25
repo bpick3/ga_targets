@@ -30,3 +30,4 @@ LEFT JOIN `democrats.scores_ga.current_scores` s
     ON ts.person_id = s.person_id
 WHERE ts.sub_ethnicity IN ('Ukrainian', 'Polish')
 AND p.person_id IS NOT NULL
+AND p.is_deceased = false
