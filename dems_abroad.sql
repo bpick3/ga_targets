@@ -21,7 +21,7 @@ SELECT
   o.dnc_2024_dem_party_support_v0 as dnc_2024_support_score,
   o.turnout_2024_v2 as turnout_score
 FROM
-  democrats.av_ev_ga_20221108_general.GA_statewide_148_standard as s
+  democrats.av_ev_ga_20240312_pres_primary.GA_statewide_31_standard as s
 LEFT JOIN
   demsgasp.vansync.contacts_emails_myv as e
     ON s.VanID = e.myv_van_id AND e.datetime_suppressed IS NULL AND e.email IS NOT NULL AND s.VanID IS NOT NULL
@@ -33,6 +33,6 @@ LEFT JOIN
     ON s.person_id = o.person_id
 WHERE 
   1 = 1
-  AND s.source_Ballot_Style IN ('ELECTRONIC')
+  AND s.source_Ballot_Style IN ('ELECTRONIC BALLOT DELIVERY')
   AND p.first_name IS NOT NULL
 QUALIFY ROW_NUMBER() OVER(PARTITION BY s.sos_id ORDER BY e.datetime_created DESC) = 1
